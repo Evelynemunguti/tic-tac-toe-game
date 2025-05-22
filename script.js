@@ -46,3 +46,30 @@ function checkWinner(){
         }
         return null; // No winner yet
     }
+
+
+    cells.forEach(cell => {
+        cell.addEventListener("click", () => {
+          if (cell.textContent === "") {
+            cell.textContent = currentPlayer;
+      
+            // Check for a win
+            const winner = checkWinner();
+            if (winner) {
+              alert(winner + " wins!");
+              return; // Stop the game
+            }
+      
+            // Check for draw
+            const isDraw = [...cells].every(cell => cell.textContent !== "");
+            if (isDraw) {
+              alert("It's a draw!");
+              return;
+            }
+      
+            // Switch player
+            currentPlayer = currentPlayer === "X" ? "O" : "X";
+          }
+        });
+      });
+      
