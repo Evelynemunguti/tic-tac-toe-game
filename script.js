@@ -72,4 +72,12 @@ function checkWinner(){
           }
         });
       });
-      
+
+      function resetGame() {
+        cells.forEach(cell => {
+          cell.textContent = "";
+        });
+        currentPlayer = "X";
+      }
+     
+      resetBtn.addEventListener("click", resetGame);
