@@ -23,7 +23,7 @@ Tic Tac Toe is a classic 2-player game where players take turns marking spaces i
 
 ## 🔗 Live Demo
 
-[Click here to play the game!]([https://evelynemunguti.github.io/tic-tac-toe-game/]) 
+([https://evelynemunguti.github.io/tic-tac-toe-game/]) 
 
 
 
