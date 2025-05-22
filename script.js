@@ -1,12 +1,13 @@
-const gameBoard = document.getElementById("gameBoord");
+const gameBoard = document.getElementById("gameBoard");
 const status = document.getElementById("status");
 const resetBtn = document.getElementById("resetBtn");
 
 
 
 let currentPlayer = "X";
+let gameActive= "true";
 
-const cell = document.querySelectorAll(".cell");
+const cells = document.querySelectorAll(".cell");
 
 cell.forEach(cell=>{
     cell.addEventListener("click",()=>{ //will only apply when the cell is empty
@@ -57,6 +58,7 @@ function checkWinner(){
             const winner = checkWinner();
             if (winner) {
               alert(winner + " wins!");
+              gameActive = false;
               return; // Stop the game
             }
       
@@ -64,6 +66,7 @@ function checkWinner(){
             const isDraw = [...cells].every(cell => cell.textContent !== "");
             if (isDraw) {
               alert("It's a draw!");
+              gameActive = false;
               return;
             }
       
@@ -78,6 +81,8 @@ function checkWinner(){
           cell.textContent = "";
         });
         currentPlayer = "X";
+        gameActive = true;
+        status.textContent = "Player X's turn";
       }
      
       resetBtn.addEventListener("click", resetGame);
