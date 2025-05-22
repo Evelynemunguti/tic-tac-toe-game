@@ -1,15 +1,16 @@
 const gameBoard = document.getElementById("gameBoard");
-const status = document.getElementById("status");
+const state = document.getElementById("state");
 const resetBtn = document.getElementById("resetBtn");
 
 
 
 let currentPlayer = "X";
-let gameActive= "true";
+let gameActive = true;
+
 
 const cells = document.querySelectorAll(".cell");
 
-cell.forEach(cell=>{
+cells.forEach(cell=>{
     cell.addEventListener("click",()=>{ //will only apply when the cell is empty
 if(cell.textContent === ""){
 cell.textContent =currentPlayer;
@@ -57,22 +58,23 @@ function checkWinner(){
             // Check for a win
             const winner = checkWinner();
             if (winner) {
-              alert(winner + " wins!");
-              gameActive = false;
+                state.textContent = `${winner} wins!`; // ✅ Shows winner here
+              let gameActive = false;
               return; // Stop the game
             }
       
             // Check for draw
             const isDraw = [...cells].every(cell => cell.textContent !== "");
-            if (isDraw) {
-              alert("It's a draw!");
-              gameActive = false;
+             if (isDraw) {
+                state.textContent = "It's a draw!";
+              let gameActive = false;
               return;
             }
       
             // Switch player
             currentPlayer = currentPlayer === "X" ? "O" : "X";
-          }
+            state.textContent = `Player ${currentPlayer}'s turn`;
+        }
         });
       });
 
@@ -81,8 +83,9 @@ function checkWinner(){
           cell.textContent = "";
         });
         currentPlayer = "X";
-        gameActive = true;
-        status.textContent = "Player X's turn";
+        let gameActive = true;
+        state.textContent= "Player X's turn";
+        
       }
      
       resetBtn.addEventListener("click", resetGame);
